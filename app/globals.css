@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: #FFFFFF;
+    min-height: 100dvh;
+}
+
+input, input[type="text"], [type="search"] {
+    font-size: inherit;
+    font-family: inherit;
+    &::placeholder {
+        font-family: inherit;
+    }
+}
