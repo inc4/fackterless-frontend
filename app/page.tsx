@@ -19,7 +19,7 @@ export default function Home() {
                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
             </svg>
           </div>
-          <input type="text" name="search" id="search" disabled={!!address}
+          <input type="text" name="search" id="search" disabled={!address}
                  className="block bg-[#0D0D0D] shadow-[0_15px_60px_-15px_rgba(0,178,255,0.5)] sha w-full rounded-2xl border-2 border-[#1045FF] my-10 py-3 px-20 text-white text-center text-[20px] placeholder:text-grey placeholder:text-center focus:outline-none"
                  placeholder="Insert the link or X account handler"/>
         </div>

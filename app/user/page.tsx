@@ -3,10 +3,13 @@
 import Image from 'next/image';
 import ReactSpeedometer from "react-d3-speedometer"
 import { Tweet } from 'react-tweet'
+//import { useUserInfo } from '@/hooks/useUserInfo';
 
 const imgUrl = 'https://s3-alpha-sig.figma.com/img/f3ac/8d09/ba10708a9130b62a39b1aa0da8907508?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=blZpKgtk-Gx~DuLTbYFRtki8Ox2R19ChgfAvakRvKTZZ2VRP5RXDQIa-rOUDxuj1qe3ErfkRwwVw~04ZODZQYCCVfMnepddG8II3MQw75gWOsQi18QCwJAOn3bn750GoGS1kVd7d9Lc~ZGfeKSaGqtcoED27OygrE3KUl-7~uKuNpJetWriTihiBk2AwY24vBJbPjLHkuia-7Tu51NjMfDcP-MrPEKELJVxvv8LJi8QQvhujETixtPxj4UfKVViN7tsPURvRm8JReJqbx9HCV7BHvVKQscUHUiwGrd9V0yHCyASXHlyh5n3IGccOGRJQpPd7s2njNO8UM~praU~fbw__';
 
 export default function User() {
+  //const data = useUserInfo();
+
   return (
     <div className="flex flex-col w-full mt-20">
       <div className="flex flex-row w-full px-40">
@@ -35,10 +38,10 @@ export default function User() {
       </div>
       <div className="text-[30px] my-10">X Feed Posts Analytics</div>
       <div className="w-full justify-center items-center grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {[...Array(10).keys()].map(() => {
+        {[...Array(10).keys()].map((item, index) => {
           return (
-            <div className="rounded-xl border-1 border-green-400 bg-green-400">
-              <Tweet id="1806614218931687491" />
+            <div key={index} className="rounded-xl border-1 border-green-400 bg-green-400">
+              <Tweet id="1809291629091500487" />
             </div>
           )
         })}
