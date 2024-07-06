@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 body {
-    background-color: #FFFFFF;
+    background-color: #0D0D0D;
     min-height: 100dvh;
+    color: #FFFFFF;
 }
 
 input, input[type="text"], [type="search"] {
