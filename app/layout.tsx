@@ -3,8 +3,8 @@ import { Syne } from 'next/font/google';
 import "./globals.css";
 import Header from '@/components/Header';
 import { Web3ModalProvider } from '@/providers/Web3ModalProvider';
-import LeftCircles from '@/components/LeftCircles';
-import RightCircles from '@/components/RightCircles';
+// import LeftCircles from '@/components/LeftCircles';
+// import RightCircles from '@/components/RightCircles';
 
 const syne = Syne({ subsets: ["latin"] });
 
@@ -21,14 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={syne.className}>
-        <div className="max-w-[1280px] h-screen m-auto px-5">
-          <LeftCircles />
-          <RightCircles />
-          <Web3ModalProvider>
-            <Header/>
-            {children}
-          </Web3ModalProvider>
-        </div>
+        {/*<LeftCircles />*/}
+        {/*<RightCircles />*/}
+          <div className="max-w-[1280px] h-screen m-auto px-5 z-1000">
+            <Web3ModalProvider>
+              <Header/>
+              {children}
+            </Web3ModalProvider>
+          </div>
       </body>
     </html>
   );
