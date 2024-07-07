@@ -1,48 +1,28 @@
-//@ts-nocheck
 'use client';
 
 import Image from 'next/image';
 import ReactSpeedometer from "react-d3-speedometer"
 import { Tweet } from 'react-tweet'
-import { getUserTwitterInfo } from '@/services/twitter';
-import { useEffect, useState } from 'react';
-//import { useSearchParams } from 'next/navigation';
+//import { useUserInfo } from '@/hooks/useUserInfo';
+
+const imgUrl = 'https://pbs.twimg.com/profile_images/1593241078035279874/7ousc-BT_400x400.jpg';
 
 export default function User() {
-  const [loading, setLoading] = useState(false);
-  const [twitterData, setTwitterData] = useState(null);
-  // const searchParams = useSearchParams()
-  const userId = '';//searchParams.get('id');
+  //const data = useUserInfo();
 
-  useEffect(() => {
-    if(!userId) return;
-
-    const fetchUserInfo = async() => {
-      setLoading(true);
-      const data = await getUserTwitterInfo(userId);
-      setTwitterData(data);
-      setLoading(false)
-    }
-    fetchUserInfo();
-  }, [userId]);
-
-
-  return !twitterData ?
-    <div className="flex justify-center items-center">
-      <div className="text-[30px]">Loading data...</div>
-    </div> :
+  return (
     <div className="flex flex-col w-full mt-20 pb-20 h-full">
       <div className="flex flex-row w-full px-40">
         <div className="felx flex-col w-full">
           <div className="flex flex-row w-full">
-            <Image className="rounded-full h-[100px]" src={twitterData?.profile_image_url} alt="vitalik" width={100} height={100}/>
+            <Image className="rounded-full h-[100px]" src={imgUrl} alt="vitalik" width={100} height={100}/>
             <div className="flex flex-col ml-10">
-              <div className="text-[30px]">{twitterData?.name}</div>
-              <div className="text-[20px]">@{twitterData?.username}</div>
+              <div className="text-[30px]">Daan Crypto Trades</div>
+              <div className="text-[20px]">@DaanCrypto</div>
             </div>
           </div>
           <div className="flex w-full mt-10 justify-center">
-            {twitterData?.description}
+            Fulltime Crypto Trader & Investor 📈 | Tweets are not financial advice
           </div>
         </div>
 
@@ -99,4 +79,5 @@ export default function User() {
         {/*})}*/}
       </div>
     </div>
+  )
 }

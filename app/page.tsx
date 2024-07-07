@@ -1,46 +1,24 @@
 'use client';
 
-import { useWeb3ModalAccount, useWeb3ModalProvider } from '@web3modal/ethers/react';
-import { useCallback, useState } from 'react';
+import { useWeb3ModalAccount } from '@web3modal/ethers/react';
+import { useState } from 'react';
 import { Button } from '@headlessui/react';
 import TypingSpinner from '@/components/TypingSpinner';
 import Spinner from '@/components/Spinner';
-//import { useRouter } from 'next/navigation'
-import { BrowserProvider, Contract } from 'ethers';
-import { AbiAgentOne } from '@/services/abiAgentOne'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
   const { address } = useWeb3ModalAccount();
   const [userName, setUserName] = useState('');
   const [showAnimation, setShowAnimation] = useState(false);
-  const { walletProvider} = useWeb3ModalProvider();
-  const [txId, setTxId] = useState(null);
-  //const router = useRouter();
-
-  const getAgentOneData = useCallback(async (input: string) => {
-    if (!walletProvider || !input) return;
-    setShowAnimation(true);
-    try {
-      const ethersProvider = new BrowserProvider(walletProvider)
-      const signer = await ethersProvider.getSigner()
-      const contract = new Contract(process.env.NEXT_PUBLIC_AGENT_ONE_ADDRESS || "", AbiAgentOne, signer)
-      const tx = await contract.runAgent(input)
-      const receipt = await tx.wait();
-      setTxId(receipt.hash);
-      console.log(receipt);
-      console.log(`Tx: ${receipt.hash}`);
-      console.log(`Run Id: ${receipt.logs[1].args[0]}`);
-    } catch(e) {
-      console.log('Error Get Data - AgentOne', e)
-    }
-    setShowAnimation(false);
-  }, [walletProvider])
-
-  //useAgentOne();
+  const router = useRouter()
 
   const buttonHandler = () => {
-    // TODO need check if user name is wrong and show notify or error
-    getAgentOneData(userName)
+    setShowAnimation(true);
+    setTimeout(() => {
+      router.push(`/user?id=${userName}`)
+      setShowAnimation(false);
+    }, 5000)
   }
 
   return (
@@ -60,7 +38,6 @@ export default function Home() {
           <input
             type="text"
             name="search"
-            autoComplete="off"
             id="search"
             disabled={false}
             value={userName}
@@ -69,14 +46,11 @@ export default function Home() {
             placeholder="Insert the link or X account handler"
           />
         </div>
-        {showAnimation ?
-          <Spinner /> :
-        <Button
+        {showAnimation ? <Spinner /> : <Button
           onClick={buttonHandler}
           className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#20A9F7] to-[#1045FF] hover:bg-[#20A9F7] py-3 px-8 text-[20px] font-semibold focus:outline-none">
           See Beyond the Hype
         </Button>}
-        {txId && <div>txId: {txId}</div>}
       </div>
       <div className="mt-20">
         {showAnimation && <TypingSpinner />}
