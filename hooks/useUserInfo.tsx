@@ -23,7 +23,7 @@ export const useUserInfo = () => {
     const contract = new ethers.Contract(CONTRACT_ADDRESS, Abi, signer);
 
     try {
-      const user = await contract.user(455937214n);
+      const user = await contract.user();
       setUser(user[2])
     } catch(e) {
       console.log('Error get user data from contract', e)
